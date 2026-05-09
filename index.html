@@ -16,6 +16,32 @@
 
     gtag('js', new Date());
     gtag('config', 'G-6K03MDRFKG');
+
+    // Отримуємо всі картки новин
+    const newsCards = document.querySelectorAll('.card');
+
+    // Чи вже була відправлена подія
+    let hoverTracked = false;
+
+    // Відстеження наведення
+    newsCards.forEach(card => {
+
+      card.addEventListener('mouseenter', () => {
+
+        // Відправити тільки 1 раз
+        if (!hoverTracked) {
+
+          // Подія Google Analytics
+          gtag('event', 'hover_cat_news_card');
+
+          console.log('Подія hover_cat_news_card відправлена');
+
+          hoverTracked = true;
+        }
+
+      });
+
+    });
   </script>
 
   <style>
@@ -262,36 +288,6 @@
   <footer>
     © 2026 Котячі Новини • Для всіх любителів котиків 🐾
   </footer>
-
-  <script>
-
-    // Отримуємо всі картки новин
-    const newsCards = document.querySelectorAll('.card');
-
-    // Чи вже була відправлена подія
-    let hoverTracked = false;
-
-    // Відстеження наведення
-    newsCards.forEach(card => {
-
-      card.addEventListener('mouseenter', () => {
-
-        // Відправити тільки 1 раз
-        if (!hoverTracked) {
-
-          // Подія Google Analytics
-          gtag('event', 'hover_cat_news_card');
-
-          console.log('Подія hover_cat_news_card відправлена');
-
-          hoverTracked = true;
-        }
-
-      });
-
-    });
-
-  </script>
 
 </body>
 </html>
