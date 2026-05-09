@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Котячі Новини 🐾</title>
 
   <!-- Google Analytics -->
@@ -16,6 +16,7 @@
     }
 
     gtag('js', new Date());
+
     gtag('config', 'G-6K03MDRFKG');
   </script>
 
@@ -77,6 +78,7 @@
       overflow:hidden;
       box-shadow:0 5px 18px rgba(0,0,0,0.08);
       transition:0.3s;
+      cursor:pointer;
     }
 
     .card:hover{
@@ -142,26 +144,7 @@
       background:#ff7b54;
       color:white;
       text-align:center;
-      padding:40px 20px;
-    }
-
-    .footer-btn{
-      margin-top:20px;
-      padding:16px 34px;
-      border:none;
-      border-radius:14px;
-      background:white;
-      color:#ff6b3d;
-      font-size:18px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.3s;
-      box-shadow:0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    .footer-btn:hover{
-      transform:scale(1.05);
-      background:#fff0e7;
+      padding:25px;
     }
 
     @media(max-width:700px){
@@ -196,25 +179,21 @@
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?q=80&w=1200&auto=format&fit=crop" alt="Кіт">
-
         <div class="card-content">
           <h3>Кіт Барсик врятував голуба</h3>
-
           <p>
-            Сьогодні вранці у Львові рудий кіт Барсик став справжнім героєм.
-            Люди помітили, як він відганяв дворового собаку від пораненого голуба.
+            Сьогодні вранці у Львові рудий кіт Барсик став героєм району.
+            Люди помітили, як він відганяв собаку від пораненого голуба.
           </p>
         </div>
       </div>
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?q=80&w=1200&auto=format&fit=crop" alt="Кіт">
-
         <div class="card-content">
           <h3>Марсик пережив напад собаки</h3>
-
           <p>
-            Відомий дворовий кіт Марсик чудом вижив після нападу великої собаки
+            Марсик зміг врятуватися під старим автомобілем
             та повернувся до свого двору через кілька годин.
           </p>
         </div>
@@ -222,12 +201,10 @@
 
       <div class="card">
         <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=1200&auto=format&fit=crop" alt="Кіт">
-
         <div class="card-content">
           <h3>Фунтік став зіркою району</h3>
-
           <p>
-            Маленький Фунтік навчився самостійно заходити у місцеву пекарню
+            Фунтік навчився сам заходити у місцеву пекарню
             через автоматичні двері.
           </p>
         </div>
@@ -243,33 +220,33 @@
 
       <div class="breed">
         <h4>Британська короткошерста</h4>
-
         <p>
-          Спокійні, пухнасті та дуже добрі котики.
+          Спокійні та дуже пухнасті котики,
+          які люблять комфорт.
         </p>
       </div>
 
       <div class="breed">
         <h4>Мейн-кун</h4>
-
         <p>
-          Одна з найбільших порід котів у світі.
+          Великі та дружелюбні коти,
+          яких називають лагідними велетнями.
         </p>
       </div>
 
       <div class="breed">
         <h4>Сіамська кішка</h4>
-
         <p>
-          Дуже розумні та активні котики.
+          Активні та дуже розумні котики,
+          які люблять увагу.
         </p>
       </div>
 
       <div class="breed">
         <h4>Шотландська висловуха</h4>
-
         <p>
-          Відомі своїми милими загнутими вушками.
+          Милі котики із загнутими вушками
+          та спокійним характером.
         </p>
       </div>
 
@@ -283,28 +260,49 @@
   </div>
 
   <footer>
-    <p>© 2026 Котячі Новини • Для всіх любителів котиків 🐾</p>
-
-    <!-- КНОПКА -->
-    <button id="footerCatBtn" class="footer-btn">
-      🐱 Підтримати котиків
-    </button>
+    © 2026 Котячі Новини • Для всіх любителів котиків 🐾
   </footer>
 
+  <!-- SCRIPT -->
   <script>
 
-    // Кнопка footer
-    const footerBtn = document.getElementById('footerCatBtn');
+    document.addEventListener('DOMContentLoaded', () => {
 
-    // Подія кліку
-    footerBtn.addEventListener('click', () => {
+      // Всі новини
+      const newsCards = document.querySelectorAll('.card');
 
-      // Відправка події в Google Analytics
-      gtag('event', 'click_footer_cat_button');
+      // Для кожної картки
+      newsCards.forEach(card => {
 
-      console.log('click_footer_cat_button SENT');
+        // Для кожної окремої картки
+        let alreadyTracked = false;
 
-      alert('Дякуємо за підтримку котиків 🐾');
+        card.addEventListener('mouseenter', () => {
+
+          // Якщо ще не відправляли
+          if (!alreadyTracked) {
+
+            // Якщо Google Analytics завантажився
+            if (typeof gtag === 'function') {
+
+              // Відправка події
+              gtag('event', 'hover_cat_news_card', {
+                event_category: 'Cats',
+                event_label: 'User hovered cat news',
+                value: 1
+              });
+
+              console.log('hover_cat_news_card SENT');
+
+              // Забороняємо повторну відправку
+              alreadyTracked = true;
+            }
+
+          }
+
+        });
+
+      });
 
     });
 
